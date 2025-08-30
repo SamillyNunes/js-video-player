@@ -7,6 +7,8 @@ const playButton = player.querySelector('.toggle');
 const skipButtons = player.querySelectorAll('[data-skip]');
 const ranges = player.querySelectorAll('.player__slider');
 
+let scrubMouseDown = false;
+
 // Construir as funcoes
 function togglePlay() {
   const method = viewer.paused ? 'play' : 'pause';
@@ -57,3 +59,6 @@ ranges.forEach(range => range.addEventListener('change', handleRangeUpdate));
 ranges.forEach(range => range.addEventListener('mousemove', handleRangeUpdate));
 
 progress.addEventListener('click', scrub);
+progress.addEventListener('mousemove', (e) => scrubMouseDown && scrub(e));
+progress.addEventListener('mousedown', ()=> scrubMouseDown=true);
+progress.addEventListener('mouseup', ()=> scrubMouseDown=false);
