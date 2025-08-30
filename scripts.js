@@ -33,6 +33,16 @@ function handleProgress() {
   progressBar.style.flexBasis = `${currentPercent}%`;
 }
 
+function scrub(e){
+  console.log(e);
+  // e.offsetX eh onde parou com o click do mouse dentro da barra de progresso (quando arrasta p/ uma posicao especifica)
+  // progress.offsetWidth eh a largura total da barra de progresso
+  // dividir um pelo outro eh ter a informacao em relacao a largura
+  // e multiplicar pela duracao eh ter a informacao da largura exata onde deve estar para caminhar com a duracao do video
+  const scrubTime = (e.offsetX / progress.offsetWidth) * viewer.duration;
+  viewer.currentTime = scrubTime;
+}
+
 // Adicioanr listeners
 viewer.addEventListener('click', togglePlay);
 viewer.addEventListener('play', updatePlayButton);
@@ -45,3 +55,5 @@ skipButtons.forEach(btn => btn.addEventListener('click', skip));
 
 ranges.forEach(range => range.addEventListener('change', handleRangeUpdate));
 ranges.forEach(range => range.addEventListener('mousemove', handleRangeUpdate));
+
+progress.addEventListener('click', scrub);
