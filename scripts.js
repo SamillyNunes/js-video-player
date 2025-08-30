@@ -18,9 +18,15 @@ function updatePlayButton() {
   playButton.textContent = icon;
 }
 
+function skip() {
+  console.log(this.dataset);
+  viewer.currentTime += parseFloat(this.dataset.skip);
+}
+
 // Adicioanr listeners
 viewer.addEventListener('click', togglePlay);
 viewer.addEventListener('play', updatePlayButton);
 viewer.addEventListener('pause', updatePlayButton);
 
 playButton.addEventListener('click', togglePlay);
+skipButtons.forEach(btn => btn.addEventListener('click', skip));
