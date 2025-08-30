@@ -28,10 +28,16 @@ function handleRangeUpdate() {
   viewer[this.name] = this.value;
 }
 
+function handleProgress() {
+  const currentPercent = (viewer.currentTime / viewer.duration) * 100;
+  progressBar.style.flexBasis = `${currentPercent}%`;
+}
+
 // Adicioanr listeners
 viewer.addEventListener('click', togglePlay);
 viewer.addEventListener('play', updatePlayButton);
 viewer.addEventListener('pause', updatePlayButton);
+viewer.addEventListener('timeupdate', handleProgress);
 
 playButton.addEventListener('click', togglePlay);
 
