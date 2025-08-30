@@ -13,6 +13,14 @@ function togglePlay() {
   viewer[method]();
 }
 
+function updatePlayButton() {
+  const icon = this.paused ? '▶' : '▐▐';
+  playButton.textContent = icon;
+}
+
 // Adicioanr listeners
 viewer.addEventListener('click', togglePlay);
+viewer.addEventListener('play', updatePlayButton);
+viewer.addEventListener('pause', updatePlayButton);
+
 playButton.addEventListener('click', togglePlay);
